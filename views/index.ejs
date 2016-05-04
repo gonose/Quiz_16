@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+  <meta charset="utf-8">
+    <title>Quiz</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Bienvenido a <%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>
+      <h1>Quiz: el juego de las preguntas</h1>
+    </header>
+    
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/quizzes">Preguntas</a>
+      <a href="/author"> Página de autor</a>
+    </nav>
 
-    <p><a href="/quizzes"> Comience a jugar</a></p>
-    <br>
-    <p><a href="/author"> Página de autor</a></p>
-
+    <section>
+      <div><p>El portal donde podrá crear sus juegos</p></div>
+    </section>
+    
     <footer>
+      <a href="https://es.wikipedia.org/wiki/Quiz">¿Que es un Quiz?</a>
     	<a href="https://github.com/gonose/Quiz_16">GitHub</a>
     </footer>
   </body>

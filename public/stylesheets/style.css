@@ -30,3 +30,35 @@ section	{text-align: left;}
 header	{text-align: center;}
 
 nav a 	{ margin: 0px 10px 0px 0px; }
+
+#flashsuccess, #flasherror, #flashinfo {
+	padding: 15px;
+	background-color: gray;
+}
+
+#flashsuccess h3 { 
+	background-color: green;
+	color: white;
+}
+#flashsuccess ul {
+	padding-left: 10px;
+	background-color: gray;
+	color: green;
+}
+
+#flasherror h3 {
+	background-color: red;
+	color: white;
+}
+#flashsuccess ul {
+	background-color: gray;
+	color: orange;
+}
+
+#flashinfo h3 {
+	background-color: blue;
+}
+#flashsuccess ul {
+	background-color: gray;
+	color: yellow;
+}

@@ -68,8 +68,10 @@ exports.create = function(req, res, next) {
 									answer: req.body.quiz.answer} );
 
 	quiz.save({fields: ["question", "answer"]}).then(function(quiz) {
+		req.flash('success', 'Quiz creado con exito.');
 		res.redirect('/quizzes');
 	}).catch(function(error){
+		req.flash('error', 'Error al crear un quiz: '+ error.message);
 		next(error);
 	});
 };

@@ -21,4 +21,6 @@ router.get('/quizzes/new', controllers.new);
 router.post('/quizzes', controllers.create);
 router.get('/quizzes/:id(\\d+)/edit', controllers.edit);
 router.put('/quizzes/:id(\\d+)', controllers.update);
+router.delete('/quizzes/:id(\\d+)', controllers.destroy);
+
 module.exports = router;

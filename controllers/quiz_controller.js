@@ -1,4 +1,5 @@
 var models = require('../models');
+var Sequelize = require('sequelize');
 
 // Autoload el quiz asociado a :quizId
 exports.load = function(req, res, next, quizId) {
@@ -70,8 +71,15 @@ exports.create = function(req, res, next) {
 	quiz.save({fields: ["question", "answer"]}).then(function(quiz) {
 		req.flash('success', 'Quiz creado con exito.');
 		res.redirect('/quizzes');
+	}).catch(Sequelize.ValidationError, function(error){
+		req.flash('error', 'Error en el formulario');
+		for (var i in error.errors) {
+			req.flash('error', error.errors[i].value);
+		}
+
+		res.render('quizzes/new', {quiz: quiz});
 	}).catch(function(error){
-		req.flash('error', 'Error al crear un quiz: '+ error.message);
+		req.flash('error','Error al crear un Quiz: '+error.message);
 		next(error);
-	});
+	})
 };

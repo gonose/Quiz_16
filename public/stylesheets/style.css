@@ -37,28 +37,26 @@ nav a 	{ margin: 0px 10px 0px 0px; }
 }
 
 #flashsuccess h3 { 
-	background-color: green;
-	color: white;
+	background-color: gray;
+	color: black;
 }
 #flashsuccess ul {
 	padding-left: 10px;
-	background-color: gray;
-	color: green;
+	background-color: green;
 }
 
 #flasherror h3 {
-	background-color: red;
-	color: white;
-}
-#flashsuccess ul {
 	background-color: gray;
-	color: orange;
+	color: black;
+}
+#flasherror ul {
+	background-color: red;
 }
 
 #flashinfo h3 {
-	background-color: blue;
-}
-#flashsuccess ul {
 	background-color: gray;
-	color: yellow;
+	color: black;
+}
+#flashinfo ul {
+	background-color: blue;
 }

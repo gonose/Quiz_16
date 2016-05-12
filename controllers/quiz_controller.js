@@ -16,29 +16,47 @@ exports.load = function(req, res, next, quizId) {
 // GET /quizzes
 exports.index = function(req,res,next){
 	var text = req.query.search;
-	if(text == undefined){
-		models.Quiz.findAll().then(function(quizzes) {
-			res.render('quizzes/index', { quizzes: quizzes});
-		}).catch(function(error) { next(error); });
+	var format = req.params.format;
+	
+	if( format !== "json"){
+		
+			if(text == undefined){
+				models.Quiz.findAll().then(function(quizzes) {
+					res.render('quizzes/index', { quizzes: quizzes});
+				}).catch(function(error) { next(error); });
+			} else {
+				text = "%" + text.replace(" ", "%") + "%";
+				models.Quiz.findAll({where: {question: {$like: text}}}).then(function(quizzes) {
+					res.render('quizzes/index', { quizzes: quizzes});
+				}).catch(function(error) { next(error); });
+			}
 	} else {
-		text = "%" + text.replace(" ", "%") + "%";
-		models.Quiz.findAll({where: {question: {$like: text}}}).then(function(quizzes) {
-			res.render('quizzes/index', { quizzes: quizzes});
+		models.Quiz.findAll().then(function(quizzes) {
+			res.json( quizzes );
 		}).catch(function(error) { next(error); });
-	}
+	}	
 };
 
 // GET /quizzes:id
 exports.show = function(req, res, next) {
+	var format = req.params.format;
+
 	models.Quiz.findById(req.params.id).then(function(quiz) {
-		if(quiz){
-			var answer = req.query.answer || '';
-			res.render('quizzes/show', { quiz: req.quiz,
-									answer: answer });
+		if(format === "json"){
+			res.json(quiz);
+		} else {
+			if(quiz){
+				var answer = req.query.answer || '';
+				res.render('quizzes/show', { quiz: req.quiz,
+											answer: answer });
+			}
+			else {
+				throw new Error('No hay preguntas en la BBDD. ');
+			}
 		}
-		else {
-			throw new Error('No hay preguntas en la BBDD. ');
-		}
+
+				
+			
 	}).catch(function(error) { next(error);});
 };
 

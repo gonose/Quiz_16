@@ -4,7 +4,7 @@ var router = express.Router();
 var quizcontrollers = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var usercontroller = require('../controllers/user_controller');
-
+var sessioncontroller = require('../controllers/session_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -40,6 +40,11 @@ router.post('/users',						usercontroller.create);
 router.get('/users/:userId(\\d+)/edit',		usercontroller.edit);
 router.put('/users/:userId(\\d+)',			usercontroller.update);
 router.delete('/users/:userId(\\d+)',		usercontroller.destroy);
+
+// Session
+router.get('/session', sessioncontroller.new);
+router.post('/session', sessioncontroller.create);
+router.delete('/session', sessioncontroller.destroy);
 
 router.get('/quizzes/:id(\\d+)/comments/new', commentController.new);
 router.post('/quizzes/:id(\\d+)/comments', commentController.create)

@@ -60,3 +60,7 @@ nav a 	{ margin: 0px 10px 0px 0px; }
 #flashinfo ul {
 	background-color: blue;
 }
+
+.right {
+	text-align: right;
+}

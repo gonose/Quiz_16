@@ -10,7 +10,9 @@
 </p>
 
 <p><strong>Comentarios:</strong>
-<p> <a href="/quizzes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a> </p>
+<% if (session.user) { %>
+	<p> <a href="/quizzes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a> </p>
+<% } %>
 <ul>
 <% for (var i in quiz.Comments) { %>
 	<li> <%= quiz.Comments[i].text %> </li>

@@ -18,7 +18,6 @@ var sequelize = new Sequelize(url,
 
 var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
 var Comment = sequelize.import(path.join(__dirname, 'comment'));
-
 var User = sequelize.import(path.join(__dirname, 'user'));
 
 Comment.belongsTo(Quiz);

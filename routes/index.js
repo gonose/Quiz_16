@@ -28,19 +28,23 @@ router.get('/quizzes/new', 					sessioncontroller.loginRequired,
 router.post('/quizzes', 					sessioncontroller.loginRequired, 
 											quizcontrollers.create);
 router.get('/quizzes/:id(\\d+)/edit', 		sessioncontroller.loginRequired, 
+											quizcontrollers.ownershipRequired,
 											quizcontrollers.edit);
 router.put('/quizzes/:id(\\d+)', 			sessioncontroller.loginRequired, 
+											quizcontrollers.ownershipRequired, 
 											quizcontrollers.update);
 router.delete('/quizzes/:id(\\d+)', 		sessioncontroller.loginRequired, 
+											quizcontrollers.ownershipRequired,
 											quizcontrollers.destroy);
 
 // Comments
-router.get('/quizzes/:id(\\d+)/comments/new', 	sessioncontroller.loginRequired, 
+router.get('/quizzes/:id(\\d+)/comments/new', 	sessioncontroller.loginRequired,
 												commentController.new);
-router.post('/quizzes/:id(\\d+)/comments', 		sessioncontroller.loginRequired, 
+router.post('/quizzes/:id(\\d+)/comments', 		sessioncontroller.loginRequired,
 												commentController.create)
 router.put('/quizzes/:id(\\d+)/comments/:commentId(\\d+)/accept',
-												sessioncontroller.loginRequired, 
+												sessioncontroller.loginRequired,
+												quizcontrollers.ownershipRequired, 
 												commentController.accept);
 // Users
 router.get('/users', 						usercontroller.index);
@@ -48,10 +52,13 @@ router.get('/users/:userId(\\d+)',			usercontroller.show);
 router.get('/users/new',					usercontroller.new);
 router.post('/users',						usercontroller.create);
 router.get('/users/:userId(\\d+)/edit',		sessioncontroller.loginRequired, 
+											usercontroller.adminOrMyselfRequired,
 											usercontroller.edit);
 router.put('/users/:userId(\\d+)',			sessioncontroller.loginRequired, 
+											usercontroller.adminOrMyselfRequired,
 											usercontroller.update);
 router.delete('/users/:userId(\\d+)',		sessioncontroller.loginRequired, 
+											usercontroller.adminAndNotMyselfRequired,
 											usercontroller.destroy);
 
 // Session

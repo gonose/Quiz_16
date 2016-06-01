@@ -10,7 +10,7 @@
 
 
 			<% if (session.user) { %>
-				<p>
+				<td>
 					<% if (session.user.isAdmin || session.user.id === user.id) { %>
 		        		<a href="/users/<%= users[i].id %>/edit"><button>editar</button></a>
 		      		<% } %>
@@ -21,7 +21,7 @@
 			           <button>borrar</button> 
 			        	</a> 
 			        <% } %>
-		        </p>
+		        </td>
 	      	<% } %>
     	</tr>
   <%  }; %>

@@ -45,6 +45,17 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+// Production (Heroku) redirect HTTP to HTTPS
+if (app.get('env') === 'production'){
+  app.use(function(res,req,next) {
+    if(req.headers['x-fordwarded-proto'] !== 'https'){
+      res.redirect('https://' + req.get('Host') + req.url);
+    } else {
+      next();
+    }
+  });
+}
+
 // error handlers
 
 // development error handler

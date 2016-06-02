@@ -1,9 +1,16 @@
 <p>
 <form method="get" action="<%= quiz.id %>/check">
 	<p> Pregunta: <%= quiz.question %> </p>
-    <p>
-	<input type="text" name="answer" value="<%= answer %>" placeholder="Responda aqui">
-	<input type="submit" value="Comprobar">
+
+  <% if (quiz.Attachment) { %>
+    <img src="<%= quiz.Attachment.url %>" />
+  <% } else { %>
+    <img src="/imgs/question.png" width="50px" />
+  <% } %>
+
+  <p>
+  	<input type="text" name="answer" value="<%= answer %>" placeholder="Responda aqui">
+  	<input type="submit" value="Comprobar">
 	</p>
 </form>
 <br><br>

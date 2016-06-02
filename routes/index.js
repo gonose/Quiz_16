@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var multer = require('multer');
+var upload = multer({ dest: './uploads/'});
+
 var quizcontrollers = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var usercontroller = require('../controllers/user_controller');
@@ -26,12 +29,14 @@ router.get('/quizzes/:id(\\d+)/check', 		quizcontrollers.check);
 router.get('/quizzes/new', 					sessioncontroller.loginRequired, 
 											quizcontrollers.new);
 router.post('/quizzes', 					sessioncontroller.loginRequired, 
+											upload.single('image'),
 											quizcontrollers.create);
 router.get('/quizzes/:id(\\d+)/edit', 		sessioncontroller.loginRequired, 
 											quizcontrollers.ownershipRequired,
 											quizcontrollers.edit);
 router.put('/quizzes/:id(\\d+)', 			sessioncontroller.loginRequired, 
-											quizcontrollers.ownershipRequired, 
+											quizcontrollers.ownershipRequired,  
+											upload.single('image'),
 											quizcontrollers.update);
 router.delete('/quizzes/:id(\\d+)', 		sessioncontroller.loginRequired, 
 											quizcontrollers.ownershipRequired,

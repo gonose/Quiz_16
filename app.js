@@ -38,7 +38,7 @@ app.use(function(req, res, next) {
 
 app.use(function(req, res, next) {
   if(req.session.user){
-    if((new Date().getTime() - req.session.user.time) >= 5000) {
+    if((new Date().getTime() - req.session.user.time) >= 120000) {
       delete req.session.user;
       next();
     } else {
